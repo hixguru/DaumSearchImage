@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Lezin</string>
+    <string name="app_name">DaumSearchImage</string>
     <string name="enter_image_name_to_search">검색할 단어를 입력해주세요.</string>
     <string name="no_result">검색 결과가 없습니다.</string>
     <string name="error_on_search">검색도중 오류가 발생했습니다. 잠시후 다시 시도해주세요.</string>

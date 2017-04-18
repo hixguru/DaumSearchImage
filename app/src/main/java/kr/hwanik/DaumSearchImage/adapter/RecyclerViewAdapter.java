@@ -1,4 +1,4 @@
-package kr.hwanik.lezin.adapter;
+package kr.hwanik.DaumSearchImage.adapter;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -9,11 +9,12 @@ import butterknife.ButterKnife;
 import com.facebook.drawee.view.SimpleDraweeView;
 import java.util.ArrayList;
 import java.util.List;
-import kr.hwanik.lezin.R;
-import kr.hwanik.lezin.adapter.model.AdapterModel;
-import kr.hwanik.lezin.adapter.view.AdapterView;
-import kr.hwanik.lezin.model.Item;
-import kr.hwanik.lezin.presenter.MainContract;
+import javax.inject.Inject;
+import kr.hwanik.DaumSearchImage.R;
+import kr.hwanik.DaumSearchImage.adapter.model.AdapterModel;
+import kr.hwanik.DaumSearchImage.adapter.view.AdapterView;
+import kr.hwanik.DaumSearchImage.model.Item;
+import kr.hwanik.DaumSearchImage.presenter.MainContract;
 
 /**
  * Created by hwanik on 2017. 4. 10..
@@ -25,6 +26,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     private MainContract.View view;
     private List<Item> items;
 
+    @Inject
     public RecyclerViewAdapter(MainContract.View view) {
         this.view = view;
         this.items = new ArrayList<>();

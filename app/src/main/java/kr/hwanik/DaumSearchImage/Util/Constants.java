@@ -1,4 +1,4 @@
-package kr.hwanik.lezin.Util;
+package kr.hwanik.DaumSearchImage.Util;
 
 /**
  * Created by hwanik on 2017. 4. 10..

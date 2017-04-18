@@ -1,4 +1,4 @@
-package kr.hwanik.lezin.adapter.view;
+package kr.hwanik.DaumSearchImage.adapter.view;
 
 /**
  * Created by hwanik on 2017. 4. 10..

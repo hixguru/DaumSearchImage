@@ -1,4 +1,4 @@
-package kr.hwanik.lezin.model;
+package kr.hwanik.DaumSearchImage.model;
 
 public class Item {
     private String pubDate;

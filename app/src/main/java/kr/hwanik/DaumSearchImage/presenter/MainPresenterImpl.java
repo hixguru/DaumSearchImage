@@ -1,13 +1,15 @@
-package kr.hwanik.lezin.presenter;
+package kr.hwanik.DaumSearchImage.presenter;
 
-import kr.hwanik.lezin.adapter.RecyclerViewAdapter;
-import kr.hwanik.lezin.network.DaumAPI;
-import kr.hwanik.lezin.network.RetrofitCreator;
+import android.util.Log;
+import javax.inject.Inject;
+import kr.hwanik.DaumSearchImage.adapter.RecyclerViewAdapter;
+import kr.hwanik.DaumSearchImage.network.DaumAPI;
+import kr.hwanik.DaumSearchImage.network.RetrofitCreator;
 import retrofit2.Retrofit;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
-import static kr.hwanik.lezin.Util.Constants.DAUM_API_KEY;
+import static kr.hwanik.DaumSearchImage.Util.Constants.DAUM_API_KEY;
 
 /**
  * Created by hwanik on 2017. 4. 8..
@@ -15,10 +17,12 @@ import static kr.hwanik.lezin.Util.Constants.DAUM_API_KEY;
 
 public class MainPresenterImpl implements MainContract.Presenter {
 
+    private static final String TAG = MainPresenterImpl.class.getSimpleName();
     private final String JSON_TYPE_OUTPUT = "json";
     private MainContract.View view;
     private RecyclerViewAdapter adapter;
 
+    @Inject
     public MainPresenterImpl(MainContract.View view, RecyclerViewAdapter adapter) {
         this.view = view;
         this.adapter = adapter;
@@ -43,6 +47,9 @@ public class MainPresenterImpl implements MainContract.Presenter {
 
                 adapter.addAll(response.channel.getItem());
                 adapter.refresh();
-            }, error -> view.showErrorOnSearch());
+            }, error -> {
+                Log.e(TAG, "onInputChange: error > " + error.getMessage());
+                view.showErrorOnSearch();
+            });
     }
 }

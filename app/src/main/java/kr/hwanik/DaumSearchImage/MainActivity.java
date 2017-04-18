@@ -1,4 +1,4 @@
-package kr.hwanik.lezin;
+package kr.hwanik.DaumSearchImage;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -13,17 +13,19 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import com.jakewharton.rxbinding.widget.RxTextView;
 import java.util.concurrent.TimeUnit;
-import kr.hwanik.lezin.adapter.RecyclerViewAdapter;
-import kr.hwanik.lezin.presenter.MainContract;
-import kr.hwanik.lezin.presenter.MainPresenterImpl;
+import javax.inject.Inject;
+import kr.hwanik.DaumSearchImage.adapter.RecyclerViewAdapter;
+import kr.hwanik.DaumSearchImage.dagger.component.DaggerMainComponent;
+import kr.hwanik.DaumSearchImage.dagger.module.MainModule;
+import kr.hwanik.DaumSearchImage.presenter.MainContract;
 
 public class MainActivity extends AppCompatActivity implements MainContract.View {
 
     @BindView(R.id.et_input) EditText etInput;
     @BindView(R.id.recycler_view) RecyclerView recyclerView;
 
-    private MainContract.Presenter presenter;
-    private RecyclerViewAdapter adapter;
+    @Inject RecyclerViewAdapter adapter;
+    @Inject MainContract.Presenter presenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,12 +34,13 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
 
         ButterKnife.bind(this);
 
-        adapter = new RecyclerViewAdapter(this);
+        DaggerMainComponent.builder()
+            .mainModule(new MainModule(this))
+            .build()
+            .inject(this);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
-
-        presenter = new MainPresenterImpl(this, adapter);
 
         RxTextView.textChanges(etInput)
             .throttleWithTimeout(1000, TimeUnit.MILLISECONDS)

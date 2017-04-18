@@ -1,4 +1,4 @@
-package kr.hwanik.lezin;
+package kr.hwanik.DaumSearchImage;
 
 import org.junit.Test;
 

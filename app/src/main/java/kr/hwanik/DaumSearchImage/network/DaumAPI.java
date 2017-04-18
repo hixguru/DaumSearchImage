@@ -1,6 +1,6 @@
-package kr.hwanik.lezin.network;
+package kr.hwanik.DaumSearchImage.network;
 
-import kr.hwanik.lezin.model.Response;
+import kr.hwanik.DaumSearchImage.model.Response;
 import retrofit2.http.GET;
 import retrofit2.http.Query;
 import rx.Observable;

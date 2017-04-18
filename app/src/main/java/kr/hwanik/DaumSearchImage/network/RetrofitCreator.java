@@ -1,4 +1,4 @@
-package kr.hwanik.lezin.network;
+package kr.hwanik.DaumSearchImage.network;
 
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;

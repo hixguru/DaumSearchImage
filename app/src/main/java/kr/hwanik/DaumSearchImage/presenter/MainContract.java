@@ -1,4 +1,4 @@
-package kr.hwanik.lezin.presenter;
+package kr.hwanik.DaumSearchImage.presenter;
 
 /**
  * Created by hwanik on 2017. 4. 8..

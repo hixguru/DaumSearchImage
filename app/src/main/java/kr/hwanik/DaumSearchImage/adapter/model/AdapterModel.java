@@ -1,7 +1,7 @@
-package kr.hwanik.lezin.adapter.model;
+package kr.hwanik.DaumSearchImage.adapter.model;
 
 import java.util.List;
-import kr.hwanik.lezin.model.Item;
+import kr.hwanik.DaumSearchImage.model.Item;
 
 /**
  * Created by hwanik on 2017. 4. 10..
