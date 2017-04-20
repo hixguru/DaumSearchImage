@@ -4,8 +4,6 @@ import android.util.Log;
 import javax.inject.Inject;
 import kr.hwanik.DaumSearchImage.adapter.RecyclerViewAdapter;
 import kr.hwanik.DaumSearchImage.network.DaumAPI;
-import kr.hwanik.DaumSearchImage.network.RetrofitCreator;
-import retrofit2.Retrofit;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
@@ -19,8 +17,9 @@ public class MainPresenterImpl implements MainContract.Presenter {
 
     private static final String TAG = MainPresenterImpl.class.getSimpleName();
     private final String JSON_TYPE_OUTPUT = "json";
-    private MainContract.View view;
-    private RecyclerViewAdapter adapter;
+    @Inject MainContract.View view;
+    @Inject RecyclerViewAdapter adapter;
+    @Inject DaumAPI api;
 
     @Inject
     public MainPresenterImpl(MainContract.View view, RecyclerViewAdapter adapter) {
@@ -30,9 +29,6 @@ public class MainPresenterImpl implements MainContract.Presenter {
 
     @Override
     public void onInputChange(CharSequence input) {
-        Retrofit retrofit = RetrofitCreator.create();
-        DaumAPI api = retrofit.create(DaumAPI.class);
-
         api.getImages(DAUM_API_KEY, input, JSON_TYPE_OUTPUT)
             .observeOn(AndroidSchedulers.mainThread())
             .subscribeOn(Schedulers.io())

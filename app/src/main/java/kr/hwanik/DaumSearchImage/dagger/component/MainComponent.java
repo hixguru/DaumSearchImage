@@ -10,7 +10,7 @@ import kr.hwanik.DaumSearchImage.dagger.module.MainModule;
  */
 
 @Singleton
-@Component(modules = MainModule.class)
+@Component(dependencies = AppComponent.class, modules = MainModule.class)
 public interface MainComponent {
     void inject(MainActivity mainActivity);
 }

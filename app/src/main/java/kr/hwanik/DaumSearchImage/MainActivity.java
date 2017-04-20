@@ -35,6 +35,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
         ButterKnife.bind(this);
 
         DaggerMainComponent.builder()
+            .appComponent(((MyApplication) getApplicationContext()).getComponent())
             .mainModule(new MainModule(this))
             .build()
             .inject(this);
