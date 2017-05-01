@@ -10,5 +10,5 @@ import kr.hwanik.DaumSearchImage.network.DaumAPI;
 
 @Component(modules = AppModule.class)
 public interface AppComponent {
-    DaumAPI daumApi();
+    DaumAPI api();  // dependencies에서 의존하고 있는 다른 Component들에게 명시된 인스턴스만 사용가능하게 할 수 있다.
 }

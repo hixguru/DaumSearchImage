@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     @BindView(R.id.et_input) EditText etInput;
     @BindView(R.id.recycler_view) RecyclerView recyclerView;
 
-    @Inject RecyclerViewAdapter adapter;
+    private RecyclerViewAdapter adapter;
     @Inject MainContract.Presenter presenter;
 
     @Override
@@ -34,9 +34,11 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
 
         ButterKnife.bind(this);
 
+        adapter = new RecyclerViewAdapter(this);
+
         DaggerMainComponent.builder()
             .appComponent(((MyApplication) getApplicationContext()).getComponent())
-            .mainModule(new MainModule(this))
+            .mainModule(new MainModule(this, adapter))
             .build()
             .inject(this);
 
@@ -69,5 +71,10 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
             InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
             imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
         }
+    }
+
+    @Override
+    public void scrollTop() {
+        recyclerView.smoothScrollToPosition(0);
     }
 }
