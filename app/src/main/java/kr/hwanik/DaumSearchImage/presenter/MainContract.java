@@ -20,5 +20,6 @@ public interface MainContract {
 
         void hideKeyboard();
 
+        void scrollTop();
     }
 }

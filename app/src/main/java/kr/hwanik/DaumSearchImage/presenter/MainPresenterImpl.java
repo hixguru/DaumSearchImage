@@ -2,7 +2,8 @@ package kr.hwanik.DaumSearchImage.presenter;
 
 import android.util.Log;
 import javax.inject.Inject;
-import kr.hwanik.DaumSearchImage.adapter.RecyclerViewAdapter;
+import kr.hwanik.DaumSearchImage.adapter.model.AdapterModel;
+import kr.hwanik.DaumSearchImage.adapter.view.AdapterView;
 import kr.hwanik.DaumSearchImage.network.DaumAPI;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
@@ -17,14 +18,16 @@ public class MainPresenterImpl implements MainContract.Presenter {
 
     private static final String TAG = MainPresenterImpl.class.getSimpleName();
     private final String JSON_TYPE_OUTPUT = "json";
-    @Inject MainContract.View view;
-    @Inject RecyclerViewAdapter adapter;
+    private MainContract.View view;
+    private AdapterModel adapterModel;
+    private AdapterView adapterView;
     @Inject DaumAPI api;
 
     @Inject
-    public MainPresenterImpl(MainContract.View view, RecyclerViewAdapter adapter) {
+    public MainPresenterImpl(MainContract.View view, AdapterModel adapterModel, AdapterView adapterView) {
         this.view = view;
-        this.adapter = adapter;
+        this.adapterModel = adapterModel;
+        this.adapterView = adapterView;
     }
 
     @Override
@@ -41,8 +44,9 @@ public class MainPresenterImpl implements MainContract.Presenter {
                     return;
                 }
 
-                adapter.addAll(response.channel.getItem());
-                adapter.refresh();
+                adapterModel.addAll(response.channel.getItem());
+                adapterView.refresh();
+                view.scrollTop();
             }, error -> {
                 Log.e(TAG, "onInputChange: error > " + error.getMessage());
                 view.showErrorOnSearch();
