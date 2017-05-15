@@ -3,16 +3,16 @@
 ### 사용기술
 
 1. Network
- - Retrofit2 & OkHttp3
+    - Retrofit2 & OkHttp3
 
 2. Reactivex
- - RxJava, RxBinding
+    - RxJava, RxBinding
  
 3. Depedency Injection
- - Dagger2
+    - Dagger2
  
 4. Image
- - Fresco
+    - Fresco
  
 5. View Binding
- - ButterKinfe
+    - ButterKinfe
