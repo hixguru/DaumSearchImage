@@ -9,7 +9,7 @@ import kr.hwanik.DaumSearchImage.network.DaumAPI;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
-import static kr.hwanik.DaumSearchImage.Util.Constants.DAUM_API_KEY;
+import static kr.hwanik.DaumSearchImage.util.Constants.DAUM_API_KEY;
 
 /**
  * Created by hwanik on 2017. 4. 8..
