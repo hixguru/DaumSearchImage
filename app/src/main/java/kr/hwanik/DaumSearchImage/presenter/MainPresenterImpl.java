@@ -4,6 +4,7 @@ import android.util.Log;
 import javax.inject.Inject;
 import kr.hwanik.DaumSearchImage.adapter.model.AdapterModel;
 import kr.hwanik.DaumSearchImage.adapter.view.AdapterView;
+import kr.hwanik.DaumSearchImage.model.Item;
 import kr.hwanik.DaumSearchImage.network.DaumAPI;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
@@ -19,12 +20,12 @@ public class MainPresenterImpl implements MainContract.Presenter {
     private static final String TAG = MainPresenterImpl.class.getSimpleName();
     private final String JSON_TYPE_OUTPUT = "json";
     private MainContract.View view;
-    private AdapterModel adapterModel;
+    private AdapterModel<Item> adapterModel;
     private AdapterView adapterView;
     @Inject DaumAPI api;
 
     @Inject
-    public MainPresenterImpl(MainContract.View view, AdapterModel adapterModel, AdapterView adapterView) {
+    public MainPresenterImpl(MainContract.View view, AdapterModel<Item> adapterModel, AdapterView adapterView) {
         this.view = view;
         this.adapterModel = adapterModel;
         this.adapterView = adapterView;

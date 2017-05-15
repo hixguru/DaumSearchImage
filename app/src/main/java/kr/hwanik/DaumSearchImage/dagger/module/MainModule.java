@@ -2,11 +2,11 @@ package kr.hwanik.DaumSearchImage.dagger.module;
 
 import dagger.Module;
 import dagger.Provides;
-import javax.inject.Singleton;
 import kr.hwanik.DaumSearchImage.MainActivity;
 import kr.hwanik.DaumSearchImage.adapter.RecyclerViewAdapter;
 import kr.hwanik.DaumSearchImage.adapter.model.AdapterModel;
 import kr.hwanik.DaumSearchImage.adapter.view.AdapterView;
+import kr.hwanik.DaumSearchImage.model.Item;
 import kr.hwanik.DaumSearchImage.presenter.MainContract;
 import kr.hwanik.DaumSearchImage.presenter.MainPresenterImpl;
 
@@ -17,22 +17,21 @@ import kr.hwanik.DaumSearchImage.presenter.MainPresenterImpl;
 @Module
 public class MainModule {
 
-    private RecyclerViewAdapter adapter;
+    private RecyclerViewAdapter<Item> adapter;
     private MainContract.View view;
 
-    public MainModule(MainActivity mainActivity, RecyclerViewAdapter adapter) {
+    public MainModule(MainActivity mainActivity, RecyclerViewAdapter<Item> adapter) {
         this.adapter = adapter;
         this.view = mainActivity;
     }
 
     @Provides
-    @Singleton
-    AdapterModel provideAdapterModel() {
+    AdapterModel<Item> provideAdapterModel() {
         return adapter;
     }
 
     @Provides
-    @Singleton AdapterView provideAdapterView() {
+    AdapterView provideAdapterView() {
         return adapter;
     }
 
