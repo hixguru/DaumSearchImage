@@ -8,6 +8,5 @@ import java.util.List;
 
 public interface AdapterModel<T> {
 
-    void addAll(List<T> item);
-
+    void updateItemList(List<T> item);
 }

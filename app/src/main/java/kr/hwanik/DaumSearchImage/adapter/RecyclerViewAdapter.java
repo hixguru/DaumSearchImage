@@ -1,6 +1,8 @@
 package kr.hwanik.DaumSearchImage.adapter;
 
+import android.support.v7.util.DiffUtil;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,7 +22,8 @@ import kr.hwanik.DaumSearchImage.presenter.MainContract;
  * Created by hwanik on 2017. 4. 10..
  */
 
-public class RecyclerViewAdapter<T extends Item> extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder>
+public class RecyclerViewAdapter<T extends Item>
+    extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder>
     implements AdapterModel<T>, AdapterView {
 
     private MainContract.View view;
@@ -40,9 +43,16 @@ public class RecyclerViewAdapter<T extends Item> extends RecyclerView.Adapter<Re
     }
 
     @Override
+    public void onBindViewHolder(ViewHolder holder, int position, List<Object> payloads) {
+        holder.ivRetrievedImage.setImageURI(items.get(position)
+            .getImage());
+    }
+
+    @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        holder.ivRetrievedImage
-            .setImageURI(items.get(position).getImage());
+        holder.ivRetrievedImage.setImageURI(items.get(position)
+            .getImage());
+        Log.e("tta", "onBindViewHolder: call22 ");
     }
 
     @Override
@@ -51,14 +61,17 @@ public class RecyclerViewAdapter<T extends Item> extends RecyclerView.Adapter<Re
     }
 
     @Override
-    public void addAll(List<T> addedItems) {
+    public void updateItemList(List<T> newList) {
+        final DaumDiffCallback diffCallback = new DaumDiffCallback((List<Item>) items, (List<Item>) newList);
+        final DiffUtil.DiffResult diffResult = DiffUtil.calculateDiff(diffCallback);
+
         items.clear();
-        items.addAll(addedItems);
+        items.addAll(newList);
+        diffResult.dispatchUpdatesTo(this);
     }
 
     @Override
     public void refresh() {
-        notifyDataSetChanged();
         view.hideKeyboard();
     }
 

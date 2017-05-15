@@ -45,7 +45,7 @@ public class MainPresenterImpl implements MainContract.Presenter {
                     return;
                 }
 
-                adapterModel.addAll(response.channel.getItem());
+                adapterModel.updateItemList(response.channel.getItem());
                 adapterView.refresh();
                 view.scrollTop();
             }, error -> {
