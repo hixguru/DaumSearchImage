@@ -16,3 +16,6 @@
  
 5. View Binding
     - ButterKinfe
+
+6. Design Pattern
+    - MVP
