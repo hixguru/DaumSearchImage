@@ -12,6 +12,7 @@ import retrofit2.Retrofit;
 
 @Module
 public class AppModule {
+
     @Provides
     DaumAPI provideApi(Retrofit retrofit) {
         return retrofit.create(DaumAPI.class);

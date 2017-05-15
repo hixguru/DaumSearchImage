@@ -17,6 +17,7 @@ import javax.inject.Inject;
 import kr.hwanik.DaumSearchImage.adapter.RecyclerViewAdapter;
 import kr.hwanik.DaumSearchImage.dagger.component.DaggerMainComponent;
 import kr.hwanik.DaumSearchImage.dagger.module.MainModule;
+import kr.hwanik.DaumSearchImage.model.Item;
 import kr.hwanik.DaumSearchImage.presenter.MainContract;
 
 public class MainActivity extends AppCompatActivity implements MainContract.View {
@@ -24,7 +25,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     @BindView(R.id.et_input) EditText etInput;
     @BindView(R.id.recycler_view) RecyclerView recyclerView;
 
-    private RecyclerViewAdapter adapter;
+    private RecyclerViewAdapter<Item> adapter;
     @Inject MainContract.Presenter presenter;
 
     @Override
@@ -34,7 +35,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
 
         ButterKnife.bind(this);
 
-        adapter = new RecyclerViewAdapter(this);
+        adapter = new RecyclerViewAdapter<>(this);
 
         DaggerMainComponent.builder()
             .appComponent(((MyApplication) getApplicationContext()).getComponent())
