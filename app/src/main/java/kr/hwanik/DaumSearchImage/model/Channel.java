@@ -8,12 +8,7 @@ public class Channel {
     private String title;
     private int totalCount;
     private List<Item> item;
-
-    public String getDescription() {
-        return description;
-    }
-
-    public String description;
+    private String description;
 
     public String getResult() {
         return result;
@@ -49,6 +44,14 @@ public class Channel {
 
     public List<Item> getItem() {
         return item;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }
 

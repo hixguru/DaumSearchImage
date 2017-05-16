@@ -6,7 +6,6 @@ import kr.hwanik.DaumSearchImage.MainActivity;
 import kr.hwanik.DaumSearchImage.adapter.RecyclerViewAdapter;
 import kr.hwanik.DaumSearchImage.adapter.model.AdapterModel;
 import kr.hwanik.DaumSearchImage.adapter.view.AdapterView;
-import kr.hwanik.DaumSearchImage.model.Item;
 import kr.hwanik.DaumSearchImage.presenter.MainPresenter;
 import kr.hwanik.DaumSearchImage.presenter.MainPresenterImpl;
 
@@ -17,16 +16,16 @@ import kr.hwanik.DaumSearchImage.presenter.MainPresenterImpl;
 @Module
 public class MainModule {
 
-    private RecyclerViewAdapter<Item> adapter;
+    private RecyclerViewAdapter adapter;
     private MainPresenter.View view;
 
-    public MainModule(MainActivity mainActivity, RecyclerViewAdapter<Item> adapter) {
+    public MainModule(MainActivity mainActivity, RecyclerViewAdapter adapter) {
         this.adapter = adapter;
         this.view = mainActivity;
     }
 
     @Provides
-    AdapterModel<Item> provideAdapterModel() {
+    AdapterModel provideAdapterModel() {
         return adapter;
     }
 

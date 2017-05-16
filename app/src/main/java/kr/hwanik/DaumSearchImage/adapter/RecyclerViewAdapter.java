@@ -20,11 +20,11 @@ import kr.hwanik.DaumSearchImage.presenter.MainPresenter;
  * Created by hwanik on 2017. 4. 10..
  */
 
-public class RecyclerViewAdapter<T extends Item> extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder>
-    implements AdapterModel<T>, AdapterView {
+public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder>
+    implements AdapterModel, AdapterView {
 
     private MainPresenter.View view;
-    private List<T> items;
+    private List<Item> items;
 
     @Inject
     public RecyclerViewAdapter(MainPresenter.View view) {
@@ -51,7 +51,7 @@ public class RecyclerViewAdapter<T extends Item> extends RecyclerView.Adapter<Re
     }
 
     @Override
-    public void addAll(List<T> addedItems) {
+    public void addAll(List<Item> addedItems) {
         items.clear();
         items.addAll(addedItems);
     }

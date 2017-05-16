@@ -12,9 +12,9 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RetrofitCreator {
 
-    public static String BASE_URL = "https://apis.daum.net";
-
     public static Retrofit create() {
+        String BASE_URL = "https://apis.daum.net";
+
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
         interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
         OkHttpClient client = new OkHttpClient.Builder().addInterceptor(interceptor).build();
