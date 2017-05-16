@@ -4,13 +4,9 @@ package kr.hwanik.DaumSearchImage.presenter;
  * Created by hwanik on 2017. 4. 8..
  */
 
-public interface MainContract {
+public interface MainPresenter {
 
-    interface Presenter {
-
-        void onInputChange(CharSequence input);
-
-    }
+    void onInputChange(CharSequence input);
 
     interface View {
 

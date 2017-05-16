@@ -5,5 +5,5 @@ package kr.hwanik.DaumSearchImage.util;
  */
 
 public class Constants {
-    public static final String DAUM_API_KEY = "YourDaumApiKey";
+    public static final String DAUM_API_KEY = "YourDaumAPIKey";
 }

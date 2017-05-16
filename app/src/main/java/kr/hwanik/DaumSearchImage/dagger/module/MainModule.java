@@ -7,7 +7,7 @@ import kr.hwanik.DaumSearchImage.adapter.RecyclerViewAdapter;
 import kr.hwanik.DaumSearchImage.adapter.model.AdapterModel;
 import kr.hwanik.DaumSearchImage.adapter.view.AdapterView;
 import kr.hwanik.DaumSearchImage.model.Item;
-import kr.hwanik.DaumSearchImage.presenter.MainContract;
+import kr.hwanik.DaumSearchImage.presenter.MainPresenter;
 import kr.hwanik.DaumSearchImage.presenter.MainPresenterImpl;
 
 /**
@@ -18,7 +18,7 @@ import kr.hwanik.DaumSearchImage.presenter.MainPresenterImpl;
 public class MainModule {
 
     private RecyclerViewAdapter<Item> adapter;
-    private MainContract.View view;
+    private MainPresenter.View view;
 
     public MainModule(MainActivity mainActivity, RecyclerViewAdapter<Item> adapter) {
         this.adapter = adapter;
@@ -36,12 +36,12 @@ public class MainModule {
     }
 
     @Provides
-    MainContract.View provideView() {
+    MainPresenter.View provideView() {
         return view;
     }
 
     @Provides
-    MainContract.Presenter providePresenter(MainPresenterImpl presenter) {
+    MainPresenter providePresenter(MainPresenterImpl presenter) {
         return presenter;
     }
 }

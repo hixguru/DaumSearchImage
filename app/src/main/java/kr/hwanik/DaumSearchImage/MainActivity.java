@@ -18,15 +18,15 @@ import kr.hwanik.DaumSearchImage.adapter.RecyclerViewAdapter;
 import kr.hwanik.DaumSearchImage.dagger.component.DaggerMainComponent;
 import kr.hwanik.DaumSearchImage.dagger.module.MainModule;
 import kr.hwanik.DaumSearchImage.model.Item;
-import kr.hwanik.DaumSearchImage.presenter.MainContract;
+import kr.hwanik.DaumSearchImage.presenter.MainPresenter;
 
-public class MainActivity extends AppCompatActivity implements MainContract.View {
+public class MainActivity extends AppCompatActivity implements MainPresenter.View {
 
     @BindView(R.id.et_input) EditText etInput;
     @BindView(R.id.recycler_view) RecyclerView recyclerView;
 
     private RecyclerViewAdapter<Item> adapter;
-    @Inject MainContract.Presenter presenter;
+    @Inject MainPresenter presenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

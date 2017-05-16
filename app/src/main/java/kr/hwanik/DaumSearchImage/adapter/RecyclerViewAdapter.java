@@ -14,7 +14,7 @@ import kr.hwanik.DaumSearchImage.R;
 import kr.hwanik.DaumSearchImage.adapter.model.AdapterModel;
 import kr.hwanik.DaumSearchImage.adapter.view.AdapterView;
 import kr.hwanik.DaumSearchImage.model.Item;
-import kr.hwanik.DaumSearchImage.presenter.MainContract;
+import kr.hwanik.DaumSearchImage.presenter.MainPresenter;
 
 /**
  * Created by hwanik on 2017. 4. 10..
@@ -23,11 +23,11 @@ import kr.hwanik.DaumSearchImage.presenter.MainContract;
 public class RecyclerViewAdapter<T extends Item> extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder>
     implements AdapterModel<T>, AdapterView {
 
-    private MainContract.View view;
+    private MainPresenter.View view;
     private List<T> items;
 
     @Inject
-    public RecyclerViewAdapter(MainContract.View view) {
+    public RecyclerViewAdapter(MainPresenter.View view) {
         this.view = view;
         this.items = new ArrayList<>();
     }

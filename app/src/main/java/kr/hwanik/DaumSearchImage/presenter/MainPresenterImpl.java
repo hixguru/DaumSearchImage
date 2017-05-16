@@ -15,17 +15,17 @@ import static kr.hwanik.DaumSearchImage.util.Constants.DAUM_API_KEY;
  * Created by hwanik on 2017. 4. 8..
  */
 
-public class MainPresenterImpl implements MainContract.Presenter {
+public class MainPresenterImpl implements MainPresenter {
 
     private static final String TAG = MainPresenterImpl.class.getSimpleName();
     private final String JSON_TYPE_OUTPUT = "json";
-    private MainContract.View view;
+    private MainPresenter.View view;
     private AdapterModel<Item> adapterModel;
     private AdapterView adapterView;
     @Inject DaumAPI api;
 
     @Inject
-    public MainPresenterImpl(MainContract.View view, AdapterModel<Item> adapterModel, AdapterView adapterView) {
+    public MainPresenterImpl(MainPresenter.View view, AdapterModel<Item> adapterModel, AdapterView adapterView) {
         this.view = view;
         this.adapterModel = adapterModel;
         this.adapterView = adapterView;
