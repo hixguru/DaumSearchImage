@@ -2,12 +2,11 @@ package kr.hwanik.DaumSearchImage.dagger.module;
 
 import dagger.Module;
 import dagger.Provides;
-import kr.hwanik.DaumSearchImage.MainActivity;
-import kr.hwanik.DaumSearchImage.adapter.RecyclerViewAdapter;
-import kr.hwanik.DaumSearchImage.adapter.model.AdapterModel;
-import kr.hwanik.DaumSearchImage.adapter.view.AdapterView;
-import kr.hwanik.DaumSearchImage.presenter.MainPresenter;
-import kr.hwanik.DaumSearchImage.presenter.MainPresenterImpl;
+import kr.hwanik.DaumSearchImage.dagger.scope.ActivityScope;
+import kr.hwanik.DaumSearchImage.network.DaumAPI;
+import kr.hwanik.DaumSearchImage.repository.ItemRepository;
+import kr.hwanik.DaumSearchImage.repository.ItemRepositoryImpl;
+import kr.hwanik.DaumSearchImage.viewmodel.ItemViewModel;
 
 /**
  * Created by hwanik on 2017. 4. 18..
@@ -16,31 +15,15 @@ import kr.hwanik.DaumSearchImage.presenter.MainPresenterImpl;
 @Module
 public class MainModule {
 
-    private RecyclerViewAdapter adapter;
-    private MainPresenter.View view;
-
-    public MainModule(MainActivity mainActivity, RecyclerViewAdapter adapter) {
-        this.adapter = adapter;
-        this.view = mainActivity;
+    @Provides
+    @ActivityScope
+    ItemRepository provideItemRepository(DaumAPI api) {
+        return new ItemRepositoryImpl(api);
     }
 
     @Provides
-    AdapterModel provideAdapterModel() {
-        return adapter;
-    }
-
-    @Provides
-    AdapterView provideAdapterView() {
-        return adapter;
-    }
-
-    @Provides
-    MainPresenter.View provideView() {
-        return view;
-    }
-
-    @Provides
-    MainPresenter providePresenter(MainPresenterImpl presenter) {
-        return presenter;
+    @ActivityScope
+    ItemViewModel provideViewModel(ItemRepository repository) {
+        return new ItemViewModel(repository);
     }
 }

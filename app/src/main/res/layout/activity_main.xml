@@ -1,24 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="kr.hwanik.DaumSearchImage.MainActivity"
-    >
-
-    <EditText
-        android:id="@+id/et_input"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/enter_image_name_to_search"
-        />
-
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/recycler_view"
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+    <data>
+        <variable name="user"  type="kr.hwanik.DaumSearchImage.model.Item"/>
+    </data>
+    <RelativeLayout
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/et_input"
-        />
+        tools:context="kr.hwanik.DaumSearchImage.MainActivity"
+        >
 
-</RelativeLayout>
+        <EditText
+            android:id="@+id/et_input"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/enter_image_name_to_search"
+            />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/et_input"
+            />
+
+    </RelativeLayout>
+</layout>
