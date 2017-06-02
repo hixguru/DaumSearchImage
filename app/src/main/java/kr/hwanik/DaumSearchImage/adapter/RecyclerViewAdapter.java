@@ -1,34 +1,31 @@
 package kr.hwanik.DaumSearchImage.adapter;
 
+import android.databinding.DataBindingUtil;
+import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import com.facebook.drawee.view.SimpleDraweeView;
+import com.facebook.drawee.backends.pipeline.Fresco;
+import com.facebook.drawee.backends.pipeline.PipelineDraweeController;
+import com.facebook.imagepipeline.common.ResizeOptions;
+import com.facebook.imagepipeline.request.ImageRequest;
+import com.facebook.imagepipeline.request.ImageRequestBuilder;
 import java.util.ArrayList;
 import java.util.List;
-import javax.inject.Inject;
 import kr.hwanik.DaumSearchImage.R;
-import kr.hwanik.DaumSearchImage.adapter.model.AdapterModel;
-import kr.hwanik.DaumSearchImage.adapter.view.AdapterView;
+import kr.hwanik.DaumSearchImage.databinding.ImageListItemBinding;
 import kr.hwanik.DaumSearchImage.model.Item;
-import kr.hwanik.DaumSearchImage.presenter.MainPresenter;
 
 /**
  * Created by hwanik on 2017. 4. 10..
  */
 
-public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder>
-    implements AdapterModel, AdapterView {
+public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder> {
 
-    private MainPresenter.View view;
     private List<Item> items;
 
-    @Inject
-    public RecyclerViewAdapter(MainPresenter.View view) {
-        this.view = view;
+    public RecyclerViewAdapter() {
         this.items = new ArrayList<>();
     }
 
@@ -41,8 +38,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        holder.ivRetrievedImage
-            .setImageURI(items.get(position).getImage());
+        holder.bind(items.get(position));
     }
 
     @Override
@@ -50,24 +46,34 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         return items.size();
     }
 
-    @Override
     public void addAll(List<Item> addedItems) {
         items.clear();
         items.addAll(addedItems);
     }
 
-    @Override
     public void refresh() {
         notifyDataSetChanged();
-        view.hideKeyboard();
     }
 
     static class ViewHolder extends RecyclerView.ViewHolder {
-        @BindView(R.id.iv_retrieved_image) SimpleDraweeView ivRetrievedImage;
+        private final ImageListItemBinding binding;
 
         ViewHolder(View view) {
             super(view);
-            ButterKnife.bind(this, view);
+            binding = DataBindingUtil.bind(view);
+        }
+
+        public void bind(Item item) {
+            ImageRequest request = ImageRequestBuilder.newBuilderWithSource(Uri.parse(item.getImage()))
+                .setResizeOptions(new ResizeOptions(200, 200))
+                .build();
+
+            PipelineDraweeController controller = (PipelineDraweeController) Fresco.newDraweeControllerBuilder()
+                .setOldController(binding.ivRetrievedImage.getController())
+                .setImageRequest(request)
+                .build();
+            binding.ivRetrievedImage.setController(controller);
+            binding.setUser(item);
         }
     }
 }
